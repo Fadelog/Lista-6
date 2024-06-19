@@ -16,3 +16,26 @@ print(triangulo_pascal(6))
 
 #Questão 2 item b)
 #A complexidade desse algoritmo é O(n²)
+
+#Questão 4 não pronta
+def polinomio(pol:str):
+    dici={}
+    lista=list(pol)
+    for i in lista:
+        if i=='x':
+            lista.remove(i)  
+    for j in lista:
+        if j=='^':
+            lista.remove(j)
+        elif j=='+':
+            lista.remove(j)
+        elif j== '-':
+            lista.remove(j)
+    print (lista)
+    dici[0]=lista[len(lista)-1]
+    dici[1]=lista[len(lista)-2]
+    for q in range(len(lista)-3, 0 , -2):
+        dici[lista[q]]= lista[q-1]
+    
+    print(dici)
+polinomio('2x^3-4x+5')
