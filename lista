@@ -1,0 +1,15 @@
+#Questão 2
+def triangulo_pascal(n):
+    if n==1:
+        return [1]
+    if n==2:
+        return [[1], [1, 1]]
+    la= triangulo_pascal(n-1) #calcula o triangulo com as n-1 primeiras linhas
+    proxima_linha=[1]
+    for i in range(1, n-1):
+        numero= la[n-2][i-1]+la[n-2][i] #soma o elemento de cima com o da direita da linha anterior
+        proxima_linha.append(numero)
+    proxima_linha.append(1)
+    la.append(proxima_linha) #cria uma lista de listas onde cada lista é uma linha do triângulo
+    return la
+print(triangulo_pascal(6))
