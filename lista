@@ -1,4 +1,4 @@
-#Questão 2
+#Questão 2 item a)
 def triangulo_pascal(n):
     if n==1:
         return [1]
@@ -13,3 +13,6 @@ def triangulo_pascal(n):
     la.append(proxima_linha) #cria uma lista de listas onde cada lista é uma linha do triângulo
     return la
 print(triangulo_pascal(6))
+
+#Questão 2 item b)
+#A complexidade desse algoritmo é O(n²)
