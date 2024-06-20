@@ -42,25 +42,38 @@ print(triangulo_pascal(6))
 #Questão 2 item b)
 #A complexidade desse algoritmo é O(n²)
 
-#Questão 4 não pronta
+#Questão 4 que não funciona para coeficientes e graus com mais de um dígito :(
 def polinomio(pol:str):
-    dici={}
-    lista=list(pol)
-    for i in lista:
-        if i=='x':
-            lista.remove(i)  
-    for j in lista:
-        if j=='^':
-            lista.remove(j)
-        elif j=='+':
-            lista.remove(j)
-        elif j== '-':
-            lista.remove(j)
-    print (lista)
-    dici[0]=lista[len(lista)-1]
-    dici[1]=lista[len(lista)-2]
-    for q in range(len(lista)-3, 0 , -2):
-        dici[lista[q]]= lista[q-1]
-    
-    print(dici)
-polinomio('2x^3-4x+5')
+  pol = pol.replace('-', '+-')  # Adiciona + antes dos termos negativos para facilitar split
+  termos = pol.split('+') 
+  print (termos)
+  dici={}
+  for coisa in termos:
+    coisa=list(coisa)
+    if '-' not in coisa:
+      if 'x' not in coisa:
+        dici[0]=coisa[0]
+      elif coisa[0]=='x':
+        dici[coisa[len(coisa)-1]]=1
+      else:
+        for i in range(len(coisa)): 
+          if coisa[len(coisa)-1]=='x':
+            dici[1]=coisa[0]
+          else:
+            dici[len(coisa)-1]= coisa[0]
+    else:
+       if 'x' not in coisa:
+        dici[0]=(-1)*int(coisa[1])
+       elif coisa[1]=='x':
+        dici[coisa[len(coisa)]-1]=-1
+       else:
+        for i in range(len(coisa)): 
+          if coisa[len(coisa)-1]=='x':
+            dici[1]=(-1)*int(coisa[1])
+          else:
+            dici[coisa[len(coisa)-1]]= (-1)*int(coisa[0])
+  
+  print(dici)
+
+
+polinomio('x^2-4x')
