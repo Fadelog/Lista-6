@@ -1,3 +1,28 @@
+#Questão 1
+
+def search_insert(lista, t):
+  if len(lista)==0:
+    return 0
+  if len(lista)== 1:
+    if lista[0]==t:
+      return 0
+    elif t>lista[0]:
+      return 1
+    else :
+      return 0
+  meio=len(lista)//2    
+  if t > lista[meio] and meio+1<len(lista) and t< lista[meio+ 1]:
+    return meio+1
+  elif t > lista[meio]:
+    p=search_insert(lista[meio:], t)
+    return p + meio 
+  elif t < lista[meio]:
+    p=search_insert(lista[:meio], t)
+    return p
+  elif  t==lista[meio]:
+    return meio
+print(search_insert([-20, 2, 3, 5, 9, 10, 14, 17, 18, 42, 69, 76, 100],-10))
+
 #Questão 2 item a)
 def triangulo_pascal(n):
     if n==1:
