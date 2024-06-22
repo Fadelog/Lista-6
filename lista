@@ -107,7 +107,7 @@ class Linked_list:
 
         return Linked_list(new_head)
 
-#Questão 4 que não funciona para coeficientes e graus com mais de um dígito :(
+#Questão 4 que não funciona para coeficientes e graus com mais de um dígito
 def polinomio(pol:str):
   pol = pol.replace('-', '+-')  # Adiciona + antes dos termos negativos para facilitar split
   termos = pol.split('+') 
@@ -142,3 +142,27 @@ def polinomio(pol:str):
 
 
 polinomio('x^2-4x')
+
+
+def polinomioo(dicionario):
+  polinomioooo=''
+  for chave, valor in dicionario.items():
+    if valor != 0:
+      if len(polinomioooo) > 0 and valor > 0:
+        polinomioooo += '+'
+      if valor != 1 and valor != -1:
+        polinomioooo+= str(valor)
+      elif valor == -1:
+        polinomioooo += '-'
+      if chave > 0:
+        polinomioooo += 'x'
+        if chave > 1:
+          polinomioooo += '^' + str(chave)
+      elif chave == 0:
+        polinomioooo += '+' + str(valor) 
+  #polinomioooo = polinomioooo - '+' - str(dicionario[0])
+
+
+  return polinomioooo
+polinomioo({2: 1, 1: -2, 0: 3})
+
