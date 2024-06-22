@@ -42,6 +42,71 @@ print(triangulo_pascal(6))
 #Questão 2 item b)
 #A complexidade desse algoritmo é O(n²)
 
+#Questão 3
+class List_Node:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+#item a) O(n) em que n é a quantidade de nós
+class Linked_list:
+    def __init__(self, head=None):
+        self.head = head
+        self.length = self.calculate_length()
+
+    def calculate_length(self):
+        atual = self.head
+        contagem = 0
+        while atual is not None:
+            contagem += 1
+            atual = atual.next
+        return contagem
+#item b) O(n), pois ele percorre toda a lista pra saber se é necessário deletar um nó
+    def delete_node(self, target):
+        if self.head is None:
+            return None
+        
+        # Lidar com o caso onde o nó da cabeça em si precisa ser deletado
+        while self.head and self.head.val == target:
+            self.head = self.head.next
+            self.length -= 1
+        
+        anterior = None
+        atual = self.head
+
+        while atual:
+            if atual.val == target:
+                if anterior:
+                    anterior.next = atual.next
+                self.length -= 1
+            else:
+                anteiro = atual
+            atual = atual.next
+#item c) O(n+m) n e m são os tamanhos das listas
+    def __add__(self, other):
+        if self.head is None:
+            return other
+        if other.head is None:
+            return self
+        
+        # Copiar a primeira lista
+        new_head = List_Node(self.head.val)
+        new_atual = new_head
+        atual = self.head.next
+
+        while atual is not None:
+            new_atual.next = List_Node(atual.val)
+            new_atual = new_atual.next
+            atual = atual.next
+
+        # Copiar a segunda lista
+        atual = other.head
+        while atual is not None:
+            new_atual.next = List_Node(atual.val)
+            new_atual = new_atual.next
+            atual = atual.next
+
+        return Linked_list(new_head)
+
 #Questão 4 que não funciona para coeficientes e graus com mais de um dígito :(
 def polinomio(pol:str):
   pol = pol.replace('-', '+-')  # Adiciona + antes dos termos negativos para facilitar split
